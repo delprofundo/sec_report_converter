@@ -8,7 +8,7 @@ function processVulnerabilityArray( report, report_filename ) {
     return processSast( vulnerabilities, scan, report_filename );
   case "dast":
   default:
-    console.log(`scan type ${scan.type} not handled in processVulnerabilityArray`);
+    console.log(`scan type ${ scan.type } not handled in processVulnerabilityArray`);
     return [];
   }
 }
@@ -50,18 +50,18 @@ function processDependencyScanning( vulnerabilities, dependency_files, scan, rep
       scannerVendor: scanner.vendor.name,
       scanRanAt: start_time,
       scanEndedAt: end_time,
-      urls: joinUrls(links),
+      urls: joinUrls( links ),
       report_filename
     }
   })
-  console.log('done deps', report_filename);
+  console.log( 'done dep scan', report_filename );
   return resultArray
 }
 
-function joinUrls(urlsArray) {
+function joinUrls( urlsArray ) {
   let result = "";
   urlsArray.forEach(urlObj => {
-    result = `${urlObj.url}, ${result}`
+    result = `${ urlObj.url }, ${ result }`
   })
   return result;
 }

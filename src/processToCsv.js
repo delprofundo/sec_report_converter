@@ -1,7 +1,9 @@
 const { parse } = require( "json2csv" )
 const { writeFile } = require( "./fileInterface" );
 const { processVulnerabilityArray } = require( "./scanArrayProcessor" );
-const processedReportTypes = [ "sast", /*"dast",*/ "dependency_scanning" ];
+
+const { processedReportTypes } = require( './config' );
+
 function processJsonReportArray(jsonReportArray, outputPath= process.cwd()){
   const reducedReports = jsonReportArray.map( report => reduceReport( report ))
   const csvReportsResponse = reducedReports.map( report => convertReportToCsv( report ))
@@ -17,11 +19,10 @@ function writeOutput( reportCsvArray, outputPath ) {
 function reduceReport( reportAssembly ) {
   let resultArray = [];
   const { report_filename, report } = reportAssembly;
-  const { version, scan, vulnerabilities } = report;
+  const { version, scan } = report;
   const { type, start_time, end_time, status } = scan;
   //if type not in list return invalid
   if( status !== "success" ) {
-    console.log("oops")
     resultArray.push({
       version,
       status: "SCAN_FAILED",
@@ -32,7 +33,6 @@ function reduceReport( reportAssembly ) {
     });
   }
   if( !processedReportTypes.includes( type )) {
-    console.log("oops")
     resultArray.push({
       version,
       status: "SCAN_TYPE_UNKNOWN",
