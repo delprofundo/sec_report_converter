@@ -67,6 +67,3 @@ function joinUrls( urlsArray ) {
 }
 
 module.exports.processVulnerabilityArray = processVulnerabilityArray;
-
-
-

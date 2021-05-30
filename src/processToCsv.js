@@ -1,6 +1,6 @@
 const { parse } = require( "json2csv" )
 const { writeFile } = require( "./fileInterface" );
-const { processVulnerabilityArray } = require( "./scanArrayProcessor" );
+const { processVulnerabilityArray } = require( "./processScanArray" );
 
 const { processedReportTypes } = require( './config' );
 

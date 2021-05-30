@@ -30,7 +30,7 @@ function enumerateFlagList(flags){
 
 function filterNonReportObjects( reportObjectArray ) {
   return reportObjectArray.filter( report => {
-    if(report.report.scan && processedReportTypes.includes( report.report.scan.type )) {
+    if( report.report.scan && processedReportTypes.includes( report.report.scan.type )) {
       return report;
     }
   })
@@ -46,8 +46,8 @@ function filterNonJson( files ) {
 function getReportObjects( paths ) {
   return paths.map( p => {
     return {
-      report_filename: path.basename(p),
-      report: JSON.parse( fs.readFileSync(p, 'utf8'))
+      report_filename: path.basename( p ),
+      report: JSON.parse( fs.readFileSync( p, 'utf8' ))
     }
   })
 }
