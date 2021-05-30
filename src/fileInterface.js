@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const acceptableReports = [ 'sast', 'dependency_scanning', 'dast'];
+const { processedReportTypes } = require( './config' );
 
 function enumerateReportList( flags ){
   const listOfFiles = enumList( flags );
@@ -31,7 +31,7 @@ function enumList(flags){
 
 function filterNonReportObjects( reportObjectArray ) {
   return reportObjectArray.filter( report => {
-    if(report.report.scan && acceptableReports.includes( report.report.scan.type )) {
+    if(report.report.scan && processedReportTypes.includes( report.report.scan.type )) {
       return report;
     }
   })
