@@ -1,16 +1,15 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require( 'fs' );
+const path = require( 'path' );
 
 const { processedReportTypes } = require( './config' );
 
 function enumerateReportList( flags ){
-  const listOfFiles = enumList( flags );
+  const listOfFiles = enumerateFlagList( flags );
   const filteredList = filterNonJson( listOfFiles );
   return getReportObjects( filteredList );
-  //return filterNonReportObjects( reports );
 }
 
-function enumList(flags){
+function enumerateFlagList(flags){
   const { file, folder, f } = flags
   let files = [];
   try {
@@ -39,16 +38,16 @@ function filterNonReportObjects( reportObjectArray ) {
 
 function filterNonJson( files ) {
   return files.filter( file => {
-    if(path.extname(file) === ".json")
+    if( path.extname( file ) === ".json" )
       return file
   })
 }
 
 function getReportObjects( paths ) {
-  const returnArr = paths.map( p => {
+  const returnArr = paths.map( path => {
     return {
-      report_filename: path.basename(p),
-      report: JSON.parse( fs.readFileSync(p, 'utf8'))
+      report_filename: path.basename( path ),
+      report: JSON.parse( fs.readFileSync( path, 'utf8' ))
     }
   })
   return returnArr
@@ -57,7 +56,7 @@ function getReportObjects( paths ) {
 function getFolderReports( folder ) {
   const reports = [];
   const filenames = fs.readdirSync( folder )
-  filenames.forEach( function( file ) {
+  filenames.forEach( file => {
     reports.push(`${ folder ? folder : process.cwd()}/${ file }`);
   })
   return reports;
@@ -72,7 +71,7 @@ function getFullFilePath( file ){
 }
 
 function writeFile( object, filename, path ) {
-  const outputPath = `${ path }/${ filename.split('.')[ 0 ]}.csv`;
+  const outputPath = `${ path }/${ filename.split( '.' )[ 0 ]}.csv`;
   fs.writeFile(outputPath, object, function( err) {
     if( err ) return console.log( err )
   })

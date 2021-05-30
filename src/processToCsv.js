@@ -4,10 +4,10 @@ const { processVulnerabilityArray } = require( "./scanArrayProcessor" );
 
 const { processedReportTypes } = require( './config' );
 
-function processJsonReportArray(jsonReportArray, outputPath= process.cwd()){
+function processJsonReportArray( jsonReportArray, outputPath= process.cwd()){
   const reducedReports = jsonReportArray.map( report => reduceReport( report ))
-  const csvReportsResponse = reducedReports.map( report => convertReportToCsv( report ))
-  return writeOutput( csvReportsResponse, outputPath );
+  const csvReports = reducedReports.map( report => convertReportToCsv( report ))
+  return writeOutput( csvReports, outputPath );
 }
 
 function writeOutput( reportCsvArray, outputPath ) {
@@ -51,17 +51,17 @@ function convertReportToCsv( report ) {
   //take reduced report
   let csvResponse;
   try {
-    console.log("making csv", report[0].report_filename);
-    csvResponse = parse(report)
+    console.log( "making csv", report[ 0 ].report_filename );
+    csvResponse = parse( report )
   } catch( err ) {
-    console.log("Inner Error SILENT : ", err );
+    console.log( "Inner Error SILENT : ", err );
     return null
   }
   return csvResponse;
 }
 
 function writeReport( report, outputPath ) {
-  return writeFile( report, report.split(",").pop().slice(1,-1), outputPath)
+  return writeFile( report, report.split( "," ).pop().slice( 1,-1 ), outputPath )
 }
 
 module.exports.processJsonReportArray = processJsonReportArray;
