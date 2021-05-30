@@ -1,0 +1,48 @@
+{
+  "name": "secsv",
+  "description": "basic tool to convert a json security report to csv and output to current folder",
+  "version": "0.0.1",
+  "author": "delProfundo",
+  "bin": {
+    "secsv": "./bin/run"
+  },
+  "bugs": "https://github.com/tools/secsv/issues",
+  "dependencies": {
+    "@oclif/command": "^1.8.0",
+    "@oclif/config": "^1.17.0",
+    "@oclif/plugin-help": "^3.2.2",
+    "json2csv": "^5.0.6"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1.26.0",
+    "@oclif/test": "^1.2.8",
+    "chai": "^4.3.4",
+    "eslint": "^5.16.0",
+    "eslint-config-oclif": "^3.1.0",
+    "mocha": "^5.2.0",
+    "nyc": "^14.1.1"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/src"
+  ],
+  "homepage": "https://github.com/tools/secsv",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "APACHE",
+  "main": "src/index.js",
+  "oclif": {
+    "bin": "secsv"
+  },
+  "repository": "tools/secsv",
+  "scripts": {
+    "posttest": "eslint .",
+    "prepack": "oclif-dev readme",
+    "test": "nyc mocha --forbid-only \"test/**/*.test.js\"",
+    "version": "oclif-dev readme && git add README.md"
+  }
+}
