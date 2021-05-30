@@ -44,13 +44,12 @@ function filterNonJson( files ) {
 }
 
 function getReportObjects( paths ) {
-  const returnArr = paths.map( path => {
+  return paths.map( p => {
     return {
-      report_filename: path.basename( path ),
-      report: JSON.parse( fs.readFileSync( path, 'utf8' ))
+      report_filename: path.basename(p),
+      report: JSON.parse( fs.readFileSync(p, 'utf8'))
     }
   })
-  return returnArr
 }
 
 function getFolderReports( folder ) {
