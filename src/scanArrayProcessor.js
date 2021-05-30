@@ -1,6 +1,5 @@
 
 function processVulnerabilityArray( report, report_filename ) {
-  console.log("filenaaaaaam", report_filename)
   const { vulnerabilities, dependency_files, scan } = report;
   switch( scan.type ) {
   case "dependency_scanning":
@@ -32,7 +31,7 @@ function processSast( vulnerabilities, scan, report_filename ) {
       report_filename
     }
   })
-  console.log('done sast');
+  console.log('done sast', report_filename );
   return resultArray
 }
 
@@ -55,7 +54,7 @@ function processDependencyScanning( vulnerabilities, dependency_files, scan, rep
       report_filename
     }
   })
-  console.log('done deps');
+  console.log('done deps', report_filename);
   return resultArray
 }
 

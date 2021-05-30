@@ -5,14 +5,13 @@ const processedReportTypes = [ "sast", /*"dast",*/ "dependency_scanning" ];
 function processJsonReportArray(jsonReportArray, outputPath= process.cwd()){
   const reducedReports = jsonReportArray.map( report => reduceReport( report ))
   const csvReportsResponse = reducedReports.map( report => convertReportToCsv( report ))
-  const receiptArray = writeOutput( csvReportsResponse, outputPath )
-  console.log( "fin" );
-  return receiptArray
+  return writeOutput( csvReportsResponse, outputPath );
 }
 
 function writeOutput( reportCsvArray, outputPath ) {
-  console.log(reportCsvArray);
-  return reportCsvArray.map( reportCsv => writeReport( reportCsv, outputPath ))
+  return reportCsvArray.map( reportCsv => {
+    return writeReport( reportCsv, outputPath );
+  })
 }
 
 function reduceReport( reportAssembly ) {
@@ -40,19 +39,7 @@ function reduceReport( reportAssembly ) {
       report_filename
     }
   }
-  //if no vulns return clean report
-  if( !vulnerabilities ){
-    console.log("no vunls!");
-    return {
-      version,
-      status: "NO_VULNERABILITIES PRESENT",
-      scanRanAt: start_time,
-      scanEndedAt: end_time,
-      description: "no vulnerabilities found in scan results",
-      report_filename
-    }
-  }
-  //now we have vulnerabilities, time to assemble a flat file
+  // flatten reports that passed all the above.
   const resultArray = processVulnerabilityArray( report, report_filename );
   return resultArray;
 }
@@ -61,9 +48,8 @@ function convertReportToCsv( report ) {
   //take reduced report
   let csvResponse;
   try {
-    console.log("making csv");
+    console.log("making csv", report[0].report_filename);
     csvResponse = parse(report)
-    console.log('made csv')
   } catch( err ) {
     console.log("Inner Error SILENT : ", err );
     return null
@@ -72,7 +58,7 @@ function convertReportToCsv( report ) {
 }
 
 function writeReport( report, outputPath ) {
-  writeFile( report, report.split(",").pop().slice(1,-1), outputPath)
+  return writeFile( report, report.split(",").pop().slice(1,-1), outputPath)
 }
 
 module.exports.processJsonReportArray = processJsonReportArray;

@@ -8,10 +8,8 @@ class SecsvCommand extends Command {
   async run() {
     const { flags } = this.parse(SecsvCommand)
     const listOfReportObjects = enumerateReportList(flags);
-    console.log(listOfReportObjects.length);
     const response = processJsonReportArray( listOfReportObjects );
-    console.log( 'response', response );
-    console.log('eed');
+    console.log( 'COMPLETE : file process receipt array', response );
   }
 }
 
