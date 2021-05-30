@@ -1,7 +1,7 @@
 {
   "name": "secsv",
   "description": "basic tool to convert a json security report to csv and output to current folder",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "delProfundo",
   "bin": {
     "secsv": "./bin/run"
