@@ -9,7 +9,7 @@ function processVulnerabilityArray( report, report_filename ) {
   case "dast":
   default:
     console.log(`scan type ${scan.type} not handled in processVulnerabilityArray`);
-    return { scanType: scan.type, status: "UNSUPPORTED" }
+    return [];
   }
 }
 

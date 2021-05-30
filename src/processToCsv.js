@@ -15,32 +15,35 @@ function writeOutput( reportCsvArray, outputPath ) {
 }
 
 function reduceReport( reportAssembly ) {
+  let resultArray = [];
   const { report_filename, report } = reportAssembly;
   const { version, scan, vulnerabilities } = report;
   const { type, start_time, end_time, status } = scan;
   //if type not in list return invalid
   if( status !== "success" ) {
-    return {
+    console.log("oops")
+    resultArray.push({
       version,
       status: "SCAN_FAILED",
       scanRanAt: start_time,
       scanEndedAt: end_time,
       description: `scanner reported failure to  scan`,
       report_filename
-    }
+    });
   }
   if( !processedReportTypes.includes( type )) {
-    return {
+    console.log("oops")
+    resultArray.push({
       version,
       status: "SCAN_TYPE_UNKNOWN",
       scanRanAt: start_time,
       scanEndedAt: end_time,
       description: `the report type ${type} is not currently supported`,
       report_filename
-    }
+    });
   }
   // flatten reports that passed all the above.
-  const resultArray = processVulnerabilityArray( report, report_filename );
+  resultArray = [ ...resultArray, ...processVulnerabilityArray( report, report_filename )];
   return resultArray;
 }
 

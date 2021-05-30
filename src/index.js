@@ -9,7 +9,7 @@ class SecsvCommand extends Command {
     const { flags } = this.parse(SecsvCommand)
     const listOfReportObjects = enumerateReportList(flags);
     const response = processJsonReportArray( listOfReportObjects );
-    console.log( 'COMPLETE : file process receipt array', response );
+    console.log( 'COMPLETE : file success receipt array', response );
   }
 }
 

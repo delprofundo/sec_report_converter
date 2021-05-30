@@ -6,8 +6,8 @@ const acceptableReports = [ 'sast', 'dependency_scanning', 'dast'];
 function enumerateReportList( flags ){
   const listOfFiles = enumList( flags );
   const filteredList = filterNonJson( listOfFiles );
-  const reports = getReportObjects( filteredList );
-  return filterNonReportObjects( reports );
+  return getReportObjects( filteredList );
+  //return filterNonReportObjects( reports );
 }
 
 function enumList(flags){
