@@ -19,7 +19,7 @@ $ npm install -g secsv
 $ secsv COMMAND
 running command...
 $ secsv (-v|--version|version)
-secsv/0.0.1 darwin-arm64 node-v14.15.5
+secsv/1.0.0 darwin-arm64 node-v14.15.5
 $ secsv --help [COMMAND]
 USAGE
   $ secsv COMMAND
