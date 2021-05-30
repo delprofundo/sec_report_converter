@@ -16,11 +16,10 @@ basic tool to convert a json security report to csv and output to current folder
 <!-- usage -->
 ```sh-session
 $ npm install -g secsv
-$ secsv COMMAND
-running command...
-$ secsv (-v|--version|version)
-secsv/1.2.1 darwin-arm64 node-v14.15.5
-$ secsv --help [COMMAND]
+
+$ secsv (-f|--file|--folder)
+
+$ secsv --help
 USAGE
   $ secsv COMMAND
 ...
