@@ -15,14 +15,7 @@ function processJsonReportArray(jsonReportArray, outputPath= process.cwd()){
 
 function writeOutput( reportCsvArray, outputPath ) {
   console.log(reportCsvArray);
-
-  const resultArr = reportCsvArray.map( reportCsv => writeReport( reportCsv, outputPath ))
-
-
-  // const filename = getFilenameFromCsvArr(outputArray)
-  // const reciepts = outputArray.map( outputObject => {
-  //   console.log("hai")
-  // })
+  return reportCsvArray.map( reportCsv => writeReport( reportCsv, outputPath ))
 }
 
 
