@@ -6,7 +6,7 @@
   "bin": {
     "secsv": "./bin/run"
   },
-  "bugs": "https://github.com/tools/secsv/issues",
+  "bugs": "https://github.com/delprofundo/sec_report_converter/issues",
   "dependencies": {
     "@oclif/command": "^1.8.0",
     "@oclif/config": "^1.17.0",
@@ -29,7 +29,7 @@
     "/bin",
     "/src"
   ],
-  "homepage": "https://github.com/tools/secsv",
+  "homepage": "https://github.com/delprofundo/sec_report_converter",
   "keywords": [
     "oclif"
   ],

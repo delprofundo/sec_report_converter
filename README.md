@@ -16,17 +16,29 @@ basic tool to convert a json security report to csv and output to current folder
 <!-- usage -->
 ```sh-session
 $ npm install -g secsv
-$ secsv COMMAND
+$ secsv -f
 running command...
-$ secsv (-v|--version|version)
+$ secsv (-f|--folder|--file)
 secsv/1.1.1 darwin-arm64 node-v14.15.5
-$ secsv --help [COMMAND]
+$ secsv --help
 USAGE
   $ secsv COMMAND
 ...
 ```
 <!-- usagestop -->
-# Commands
+# Flags
+
+```
+if no flag is passed all json files in the current folder that are of one of the processable report types will be created in the same folder.
+
+probably just use the default mode for now eh.
+
+-f                : now same as no flag being passed
+--file=FILENAME   : converts the given file only which must exist in the current folder. will ignore file that is not of a supported scan type
+--folder=FILEPATH : converts all json files within the given folder, outputting them in the current folder
+
+```
+
 <!-- commands -->
 
 <!-- commandsstop -->

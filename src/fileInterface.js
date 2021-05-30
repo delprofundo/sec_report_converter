@@ -20,7 +20,7 @@ function enumList(flags){
     if ( folder ) {
       files = [ ...getFolderReports( folder )]
     }
-    if ( f ) {
+    if ( f || (!file && !folder && !f)) {
       files = [ ...getFolderReports( process.cwd())]
     }
   } catch( err ) {
