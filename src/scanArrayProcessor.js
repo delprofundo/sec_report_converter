@@ -4,21 +4,20 @@ function processVulnerabilityArray( report, report_filename ) {
   const { vulnerabilities, dependency_files, scan } = report;
   switch( scan.type ) {
   case "dependency_scanning":
-    console.log("dep swish")
     return processDependencyScanning( vulnerabilities, dependency_files, scan, report_filename );
   case "sast":
-    console.log("sast swish")
     return processSast( vulnerabilities, scan, report_filename );
+  case "dast":
   default:
     console.log(`scan type ${scan.type} not handled in processVulnerabilityArray`);
-    return {}
+    return { scanType: scan.type, status: "UNSUPPORTED" }
   }
 }
 
 function processSast( vulnerabilities, scan, report_filename ) {
   const { type, start_time, end_time, status } = scan;
-  const resultArray = vulnerabilities.map(vulnerability => {
-    const {location, scanner, identifiers, ...vuln_remain} = vulnerability;
+  const resultArray = vulnerabilities.map( vulnerability => {
+    const { location, scanner, identifiers, ...vuln_remain } = vulnerability;
     return {
       status,
       ...vuln_remain,

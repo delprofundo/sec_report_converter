@@ -1,16 +1,16 @@
 const {Command, flags} = require('@oclif/command');
-const { enumerateList } = require("./fileInterface");
+const { enumerateReportList } = require("./fileInterface");
 const { processJsonReportArray } = require("./processToCsv");
 class SecsvCommand extends Command {
   static flags = {
     file: flags.string()
   }
   async run() {
-    const {flags} = this.parse(SecsvCommand)
-    const listOfReportObjects = enumerateList(flags);
+    const { flags } = this.parse(SecsvCommand)
+    const listOfReportObjects = enumerateReportList(flags);
     console.log(listOfReportObjects.length);
-    const response = processJsonReportArray(listOfReportObjects);
-    console.log('response', response);
+    const response = processJsonReportArray( listOfReportObjects );
+    console.log( 'response', response );
     console.log('eed');
   }
 }
